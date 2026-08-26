@@ -1,4 +1,4 @@
-                   # Adult Income Prediction using Machine Learning
+# Adult Income Prediction using Machine Learning
 
 ## 📌 Project Overview
 
