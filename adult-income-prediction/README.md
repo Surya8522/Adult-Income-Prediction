@@ -90,7 +90,6 @@ adult_cleaned.csv
 ---
 
 ## 📂 Project Structure
-
 ```text
 Adult-Income-Prediction/
 │
