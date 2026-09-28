@@ -5,6 +5,8 @@
 # Python cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
 # Jupyter
 .ipynb_checkpoints/
@@ -18,3 +20,10 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# MLflow
+mlruns/
+mlflow.db
+
+# Pytest
+.pytest_cache/
