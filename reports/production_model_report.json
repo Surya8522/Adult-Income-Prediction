@@ -1,0 +1,8 @@
+{
+    "model_name": "Adult_Income_Production_Model",
+    "dataset": "Adult Income",
+    "status": "registered",
+    "version": 1,
+    "run_id": "58570570e3564919a426699276ba7560",
+    "source": "models:/m-b8c9c173e4914f8581ad1f72fccf3c43"
+}

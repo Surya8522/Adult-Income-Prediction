@@ -1,0 +1,30 @@
+{
+    "data/processed/X_train_final.npy": {
+        "exists": true,
+        "shape": [
+            26048,
+            104
+        ]
+    },
+    "data/processed/X_test_final.npy": {
+        "exists": true,
+        "shape": [
+            6513,
+            104
+        ]
+    },
+    "data/processed/y_train.npy": {
+        "exists": true,
+        "shape": [
+            26048
+        ]
+    },
+    "data/processed/y_test.npy": {
+        "exists": true,
+        "shape": [
+            6513
+        ]
+    },
+    "random_state": 42,
+    "dataset": "Adult Income"
+}
