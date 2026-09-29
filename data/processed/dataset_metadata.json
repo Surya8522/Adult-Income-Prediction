@@ -1,22 +1,16 @@
 {
     "dataset": "Adult Income",
+    "dataset_path": "data/raw/adult.csv",
     "target": "income",
     "target_mapping": {
         "<=50K": 0,
         ">50K": 1
     },
-    "original_shape": [
-        32561,
-        15
-    ],
-    "train_shape": [
-        26048,
-        104
-    ],
-    "test_shape": [
-        6513,
-        104
-    ],
+    "original_rows": 32561,
+    "original_columns": 15,
+    "train_rows": 26048,
+    "test_rows": 6513,
+    "processed_features": 104,
     "numerical_features": [
         "age",
         "fnlwgt",

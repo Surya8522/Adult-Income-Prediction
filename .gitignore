@@ -27,3 +27,20 @@ mlflow.db
 
 # Pytest
 .pytest_cache/
+
+.venv/
+.venv311/
+.venv313/
+
+__pycache__/
+*.pyc
+
+.ipynb_checkpoints/
+.vscode/
+
+*.log
+.DS_Store
+Thumbs.db
+
+mlflow.db
+mlruns/
