@@ -132,9 +132,6 @@ Adult-Income-Prediction/
 │   ├── preprocessor.pkl
 │   └── random_forest_model.pkl
 │
-├── notebooks/
-│   └── income_prediction.ipynb
-│
 ├── outputs/
 │   ├── model_comparison.csv
 │   ├── confusion_matrix.png
@@ -150,6 +147,7 @@ Adult-Income-Prediction/
 │   └── production_model_report.json
 │
 ├── src/
+│   ├── income_prediction.py
 │   ├── validate_data.py
 │   ├── preprocess.py
 │   ├── preprocess_pipeline.py
