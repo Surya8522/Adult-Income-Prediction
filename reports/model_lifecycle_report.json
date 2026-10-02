@@ -1,0 +1,23 @@
+{
+    "project": "Adult Income Prediction",
+    "task": "Binary Classification",
+    "registered_model": "Adult_Income_Production_Model",
+    "production_version": 5,
+    "production_stage": "Production",
+    "model_type": "Random Forest",
+    "run_id": "970ca344c4d04ef48b2dbcb0a8df731f",
+    "metrics": {
+        "accuracy": 0.7901120835252572,
+        "precision": 0.5395825128003151,
+        "recall": 0.8737244897959183,
+        "f1_score": 0.667153640126613,
+        "roc_auc": 0.9036479075957987
+    },
+    "files": {
+        "model": "C:\\Users\\divin\\Documents\\MLOPS\\adult-income-prediction\\artifacts\\model_registry\\production_model.pkl",
+        "comparison": "C:\\Users\\divin\\Documents\\MLOPS\\adult-income-prediction\\outputs\\model_comparison.csv",
+        "classification_report": "C:\\Users\\divin\\Documents\\MLOPS\\adult-income-prediction\\outputs\\classification_report.txt",
+        "metadata": "C:\\Users\\divin\\Documents\\MLOPS\\adult-income-prediction\\artifacts\\model_registry\\production_model_metadata.json"
+    },
+    "status": "Production"
+}

@@ -1,8 +1,27 @@
 {
-    "model_name": "Adult_Income_Production_Model",
-    "dataset": "Adult Income",
-    "status": "registered",
-    "version": 3,
-    "run_id": "d5ff22b11c6e47908c31d846f02a7d03",
-    "source": "models:/m-12edbfd704df4ae2ab0d03c6f7143905"
+    "registry_status": "READY_FOR_DEPLOYMENT",
+    "model_lineage": {
+        "registered_name": "Adult_Income_Production_Model",
+        "version": 5,
+        "current_stage": "Production",
+        "run_id": "970ca344c4d04ef48b2dbcb0a8df731f",
+        "artifact_uri": "models:/m-324d7100736849fbbb6a6918d399a470"
+    },
+    "performance_metrics": {
+        "recall": 0.8737244897959183,
+        "f1_score": 0.667153640126613,
+        "roc_auc": 0.9036479075957987,
+        "accuracy": 0.7901120835252572,
+        "precision": 0.5395825128003151
+    },
+    "hyperparameters": {
+        "n_estimators": "100",
+        "max_depth": "10",
+        "random_state": "42",
+        "class_weight": "balanced",
+        "dataset": "Adult Income",
+        "target": "income",
+        "model_family": "RandomForest"
+    },
+    "preprocessing_dependency": "models/preprocessor.pkl"
 }

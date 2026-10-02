@@ -1,0 +1,15 @@
+{
+    "project": "Adult Income Prediction",
+    "task": "Binary Classification",
+    "model_name": "Adult_Income_Production_Model",
+    "model_type": "Random Forest",
+    "version": 5,
+    "stage": "Production",
+    "run_id": "970ca344c4d04ef48b2dbcb0a8df731f",
+    "accuracy": 0.7901120835252572,
+    "precision": 0.5395825128003151,
+    "recall": 0.8737244897959183,
+    "f1_score": 0.667153640126613,
+    "roc_auc": 0.9036479075957987,
+    "model_file": "production_model.pkl"
+}

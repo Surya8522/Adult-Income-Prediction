@@ -1,0 +1,13 @@
+{
+    "project": "Adult Income Prediction",
+    "task": "Binary Classification",
+    "model_name": "Random Forest",
+    "version": 1,
+    "stage": "Production",
+    "accuracy": 0.7901120835252572,
+    "precision": 0.5395825128003151,
+    "recall": 0.8737244897959183,
+    "f1_score": 0.667153640126613,
+    "roc_auc": 0.9036479075957987,
+    "model_file": "Random_Forest_v1.pkl"
+}

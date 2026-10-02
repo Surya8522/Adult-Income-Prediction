@@ -1,0 +1,16 @@
+{
+    "project": "Adult Income Prediction",
+    "task": "Binary Classification",
+    "models_evaluated": [
+        "Random Forest"
+    ],
+    "best_model": "Random Forest",
+    "production_version": 1,
+    "production_accuracy": 0.7901120835252572,
+    "production_precision": 0.5395825128003151,
+    "production_recall": 0.8737244897959183,
+    "production_f1_score": 0.667153640126613,
+    "production_roc_auc": 0.9036479075957987,
+    "production_model": "C:\\Users\\divin\\Documents\\MLOPS\\adult-income-prediction\\artifacts\\model_registry\\production_model.pkl",
+    "status": "Production"
+}
