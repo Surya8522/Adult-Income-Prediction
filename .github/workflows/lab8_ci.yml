@@ -1,0 +1,91 @@
+
+name: Adult Income - Lab 8 CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ml-pipeline:
+    name: Adult Income ML CI
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Download repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Python
+      - name: Set Up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3. Install dependencies
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirments.txt
+
+      # 4. Validate raw dataset
+      - name: Validate Adult Income Dataset
+        run: |
+          python src/validate_data.py
+
+      # 5. Preprocess dataset
+      - name: Run Preprocessing
+        run: |
+          python src/preprocess_pipeline.py
+
+      # 6. Validate preprocessing outputs
+      - name: Validate Preprocessing Outputs
+        run: |
+          python src/validate_outputs.py
+
+      # 7. Train model and track using MLflow
+      - name: Train Model with MLflow
+        run: |
+          python src/train_mlflow.py
+
+      # 8. Prepare trained model for evaluation
+      - name: Prepare Model for Evaluation
+        run: |
+          mkdir -p artifacts/model_registry
+          cp models/random_forest_model.pkl models/random_forest_baseline.pkl
+          cp models/random_forest_model.pkl artifacts/model_registry/production_model.pkl
+
+      # 9. Evaluate trained model
+      - name: Evaluate Model
+        run: |
+          python src/evaluate.py
+
+      # 10. Execute quality gate
+      - name: Run Model Quality Gate
+        run: |
+          python src/quality_gate.py
+
+      # 11. Upload reports and artifacts
+      - name: Upload CI Reports and Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: adult-income-ci-results
+          if-no-files-found: warn
+          path: |
+            reports/
+            outputs/
+            models/random_forest_model.pkl
+            artifacts/model_registry/production_model.pkl
+            mlruns/
