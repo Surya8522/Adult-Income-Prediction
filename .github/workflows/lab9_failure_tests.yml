@@ -1,0 +1,58 @@
+
+name: Adult Income - Lab 9 Failure Testing
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+  pull_request:
+    branches:
+      - main
+      - master
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  failure-testing:
+    name: Adult Income Failure Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirments.txt
+
+      - name: Run Lab 9 Failure Tests
+        run: |
+          python src/lab9_failure_tests.py
+
+      - name: Display Failure Test Report
+        if: always()
+        run: |
+          if [ -f reports/lab9_failure_report.json ]; then
+            cat reports/lab9_failure_report.json
+          else
+            echo "Failure test report not generated."
+          fi
+
+      - name: Upload Lab 9 Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: adult-income-lab9-failure-report
+          path: reports/lab9_failure_report.json
+          if-no-files-found: warn
