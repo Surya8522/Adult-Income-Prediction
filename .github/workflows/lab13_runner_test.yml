@@ -12,13 +12,13 @@ jobs:
     runs-on: [self-hosted, Windows, X64]
 
     steps:
+      - name: Checkout Adult Income Project
+        uses: actions/checkout@v4
+
       - name: Check Python
         shell: powershell
         run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-
           python --version
-
           if ($LASTEXITCODE -ne 0) {
               throw "Python is not available."
           }
@@ -26,10 +26,7 @@ jobs:
       - name: Check Git
         shell: powershell
         run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-
           git --version
-
           if ($LASTEXITCODE -ne 0) {
               throw "Git is not available."
           }
@@ -37,10 +34,7 @@ jobs:
       - name: Check Docker
         shell: powershell
         run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-
           docker info
-
           if ($LASTEXITCODE -ne 0) {
               throw "Docker is not available or not running."
           }
@@ -48,10 +42,7 @@ jobs:
       - name: Check Kubernetes
         shell: powershell
         run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-
           kubectl get nodes
-
           if ($LASTEXITCODE -ne 0) {
               throw "Kubernetes is not available."
           }
@@ -59,40 +50,20 @@ jobs:
       - name: Check Adult Income Project
         shell: powershell
         run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-
-          $ProjectRoot = "C:\Users\surya\Downloads\Btech\ドキュメント\MLOPS\adult-income-prediction"
-
           Write-Host "Runner: $env:RUNNER_NAME"
           Write-Host "Workspace: $env:GITHUB_WORKSPACE"
-          Write-Host "Project: $ProjectRoot"
+
+          $ProjectRoot = $env:GITHUB_WORKSPACE
 
           if (!(Test-Path $ProjectRoot)) {
-              throw "Adult Income project folder not found."
-          }
-
-          $Python = Join-Path $ProjectRoot ".venv311\Scripts\python.exe"
-
-          if (!(Test-Path $Python)) {
-              throw "Project Python environment not found: $Python"
-          }
-
-          & $Python --version
-
-          if ($LASTEXITCODE -ne 0) {
-              throw "Project Python execution failed."
+              throw "GitHub workspace not found."
           }
 
           $Script = Join-Path $ProjectRoot "src\lab12_monitor_trigger.py"
 
           if (!(Test-Path $Script)) {
-              throw "Adult Income monitoring script not found."
+              throw "Monitoring script not found."
           }
 
-          $Report = Join-Path $ProjectRoot "outputs\monitoring\lab12_monitor_trigger_report.json"
-
-          if (!(Test-Path $Report)) {
-              throw "Adult Income monitoring report not found."
-          }
-
-          Write-Host "Adult Income project structure verified successfully."
+          Write-Host "Adult Income project structure verified."
+          Write-Host "GitHub workspace verification completed."

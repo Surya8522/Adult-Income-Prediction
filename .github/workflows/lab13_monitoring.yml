@@ -11,31 +11,22 @@ jobs:
     runs-on: [self-hosted, Windows, X64]
 
     steps:
+      - name: Checkout Adult Income Project
+        uses: actions/checkout@v4
+
       - name: Run Adult Income MLOps monitoring trigger
         shell: powershell
         run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-
-          $ProjectRoot = "C:\Users\surya\Downloads\Btech\ドキュメント\MLOPS\adult-income-prediction"
-
-          if (!(Test-Path $ProjectRoot)) {
-              throw "Adult Income project folder not found."
-          }
-
+          $ProjectRoot = $env:GITHUB_WORKSPACE
           Set-Location $ProjectRoot
 
           Write-Host "Project location: $ProjectRoot"
 
           $env:PYTHONIOENCODING = "utf-8"
           $env:PYTHONUTF8 = "1"
-          [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-          $Python = Join-Path $ProjectRoot ".venv311\Scripts\python.exe"
+          $Python = (Get-Command python -ErrorAction Stop).Source
           $Script = Join-Path $ProjectRoot "src\lab12_monitor_trigger.py"
-
-          if (!(Test-Path $Python)) {
-              throw "Python virtual environment not found: $Python"
-          }
 
           if (!(Test-Path $Script)) {
               throw "Monitoring script not found: $Script"
@@ -52,30 +43,22 @@ jobs:
       - name: Show Adult Income monitoring report
         shell: powershell
         run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-
-          $ProjectRoot = "C:\Users\surya\Downloads\Btech\ドキュメント\MLOPS\adult-income-prediction"
-
+          $ProjectRoot = $env:GITHUB_WORKSPACE
           $Report = Join-Path $ProjectRoot "outputs\monitoring\lab12_monitor_trigger_report.json"
 
           if (!(Test-Path $Report)) {
               throw "Monitoring report not found: $Report"
           }
 
-          Write-Host "Adult Income Monitoring Report:"
           Get-Content -Path $Report -Encoding UTF8
 
       - name: Verify Kubernetes
         shell: powershell
         run: |
-          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
-
-          Write-Host "Checking Kubernetes deployment..."
-
           kubectl get deployment adult-income-deployment
 
           if ($LASTEXITCODE -ne 0) {
-              throw "Adult Income Kubernetes deployment check failed."
+              throw "Kubernetes deployment check failed."
           }
 
           kubectl get pods
@@ -89,5 +72,3 @@ jobs:
           if ($LASTEXITCODE -ne 0) {
               throw "Kubernetes service verification failed."
           }
-
-          Write-Host "Kubernetes verification completed successfully."
