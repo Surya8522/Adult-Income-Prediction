@@ -16,23 +16,15 @@ jobs:
         run: |
           Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 
-          $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
+          $ProjectRoot = "C:\Users\surya\Downloads\Btech\ドキュメント\MLOPS\adult-income-prediction"
 
-          $Project = Get-ChildItem -Path $SearchRoot `
-              -Directory `
-              -Filter "adult-income-prediction" `
-              -Recurse `
-              -ErrorAction SilentlyContinue |
-              Select-Object -First 1
-
-          if (!$Project) {
+          if (!(Test-Path $ProjectRoot)) {
               throw "Adult Income project folder not found."
           }
 
-          $ProjectRoot = $Project.FullName
-          Write-Host "Project location: $ProjectRoot"
-
           Set-Location $ProjectRoot
+
+          Write-Host "Project location: $ProjectRoot"
 
           $env:PYTHONIOENCODING = "utf-8"
           $env:PYTHONUTF8 = "1"
@@ -62,24 +54,7 @@ jobs:
         run: |
           Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 
-          $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
-
-          $Project = Get-ChildItem -Path $SearchRoot `
-              -Directory `
-              -Filter "adult-income-prediction" `
-              -Recurse `
-              -ErrorAction SilentlyContinue |
-              Select-Object -First 1
-
-          if (!$Project) {
-              throw "Adult Income project folder not found."
-          }
-
-          $ProjectRoot = $Project.FullName
-
-          $env:PYTHONIOENCODING = "utf-8"
-          $env:PYTHONUTF8 = "1"
-          [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+          $ProjectRoot = "C:\Users\surya\Downloads\Btech\ドキュメント\MLOPS\adult-income-prediction"
 
           $Report = Join-Path $ProjectRoot "outputs\monitoring\lab12_monitor_trigger_report.json"
 
@@ -115,4 +90,4 @@ jobs:
               throw "Kubernetes service verification failed."
           }
 
-          Write-Host "Kubernetes verification completed."
+          Write-Host "Kubernetes verification completed successfully."

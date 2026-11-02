@@ -61,29 +61,26 @@ jobs:
         run: |
           Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 
-          $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
-
-          $Project = Get-ChildItem -Path $SearchRoot `
-              -Directory `
-              -Filter "adult-income-prediction" `
-              -Recurse `
-              -ErrorAction SilentlyContinue |
-              Select-Object -First 1
-
-          if (!$Project) {
-              throw "Adult Income project folder not found."
-          }
-
-          $ProjectRoot = $Project.FullName
+          $ProjectRoot = "C:\Users\surya\Downloads\Btech\ドキュメント\MLOPS\adult-income-prediction"
 
           Write-Host "Runner: $env:RUNNER_NAME"
           Write-Host "Workspace: $env:GITHUB_WORKSPACE"
           Write-Host "Project: $ProjectRoot"
 
+          if (!(Test-Path $ProjectRoot)) {
+              throw "Adult Income project folder not found."
+          }
+
           $Python = Join-Path $ProjectRoot ".venv311\Scripts\python.exe"
 
           if (!(Test-Path $Python)) {
-              throw "Project Python environment not found."
+              throw "Project Python environment not found: $Python"
+          }
+
+          & $Python --version
+
+          if ($LASTEXITCODE -ne 0) {
+              throw "Project Python execution failed."
           }
 
           $Script = Join-Path $ProjectRoot "src\lab12_monitor_trigger.py"
@@ -98,4 +95,4 @@ jobs:
               throw "Adult Income monitoring report not found."
           }
 
-          Write-Host "Adult Income project structure verified."
+          Write-Host "Adult Income project structure verified successfully."
