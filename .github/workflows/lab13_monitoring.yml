@@ -12,9 +12,8 @@ jobs:
 
     steps:
       - name: Run Adult Income MLOps monitoring trigger
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass
         run: |
-          # Locate the Adult Income project automatically
           $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
 
           $Project = Get-ChildItem -Path $SearchRoot `
@@ -29,18 +28,14 @@ jobs:
           }
 
           $ProjectRoot = $Project.FullName
-
           Write-Host "Project location: $ProjectRoot"
 
           Set-Location $ProjectRoot
 
-          # Configure Python UTF-8 encoding
           $env:PYTHONIOENCODING = "utf-8"
           $env:PYTHONUTF8 = "1"
           [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-          $OutputEncoding = [Console]::OutputEncoding
 
-          # Locate Python and monitoring script
           $Python = Join-Path $ProjectRoot ".venv311\Scripts\python.exe"
           $Script = Join-Path $ProjectRoot "src\lab12_monitor_trigger.py"
 
@@ -52,7 +47,6 @@ jobs:
               throw "Monitoring script not found: $Script"
           }
 
-          # Run monitoring trigger
           & $Python $Script
 
           if ($LASTEXITCODE -ne 0) {
@@ -62,9 +56,8 @@ jobs:
           Write-Host "Adult Income monitoring completed successfully."
 
       - name: Show Adult Income monitoring report
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass
         run: |
-          # Locate the project
           $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
 
           $Project = Get-ChildItem -Path $SearchRoot `
@@ -80,12 +73,10 @@ jobs:
 
           $ProjectRoot = $Project.FullName
 
-          # Configure encoding
           $env:PYTHONIOENCODING = "utf-8"
           $env:PYTHONUTF8 = "1"
           [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
-          # Locate monitoring report
           $Report = Join-Path $ProjectRoot "outputs\monitoring\lab12_monitor_trigger_report.json"
 
           if (!(Test-Path $Report)) {
@@ -96,7 +87,7 @@ jobs:
           Get-Content -Path $Report -Encoding UTF8
 
       - name: Verify Kubernetes
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass
         run: |
           Write-Host "Checking Kubernetes deployment..."
 
@@ -107,10 +98,13 @@ jobs:
           }
 
           kubectl get pods
-          kubectl get services
-
           if ($LASTEXITCODE -ne 0) {
-              throw "Kubernetes resource verification failed."
+              throw "Kubernetes pod verification failed."
+          }
+
+          kubectl get services
+          if ($LASTEXITCODE -ne 0) {
+              throw "Kubernetes service verification failed."
           }
 
           Write-Host "Kubernetes verification completed."

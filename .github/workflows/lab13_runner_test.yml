@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Check Python
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass
         run: |
           python --version
           if ($LASTEXITCODE -ne 0) {
@@ -21,7 +21,7 @@ jobs:
           }
 
       - name: Check Git
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass
         run: |
           git --version
           if ($LASTEXITCODE -ne 0) {
@@ -29,7 +29,7 @@ jobs:
           }
 
       - name: Check Docker
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass
         run: |
           docker info
           if ($LASTEXITCODE -ne 0) {
@@ -37,7 +37,7 @@ jobs:
           }
 
       - name: Check Kubernetes
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass
         run: |
           kubectl get nodes
           if ($LASTEXITCODE -ne 0) {
@@ -45,9 +45,8 @@ jobs:
           }
 
       - name: Check Adult Income Project
-        shell: powershell
+        shell: powershell -ExecutionPolicy Bypass
         run: |
-          # Locate Adult Income project automatically
           $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
 
           $Project = Get-ChildItem -Path $SearchRoot `
@@ -67,21 +66,18 @@ jobs:
           Write-Host "Workspace: $env:GITHUB_WORKSPACE"
           Write-Host "Project: $ProjectRoot"
 
-          # Check Python virtual environment
           $Python = Join-Path $ProjectRoot ".venv311\Scripts\python.exe"
 
           if (!(Test-Path $Python)) {
               throw "Project Python environment not found."
           }
 
-          # Check monitoring script
           $Script = Join-Path $ProjectRoot "src\lab12_monitor_trigger.py"
 
           if (!(Test-Path $Script)) {
               throw "Adult Income monitoring script not found."
           }
 
-          # Check monitoring report
           $Report = Join-Path $ProjectRoot "outputs\monitoring\lab12_monitor_trigger_report.json"
 
           if (!(Test-Path $Report)) {
