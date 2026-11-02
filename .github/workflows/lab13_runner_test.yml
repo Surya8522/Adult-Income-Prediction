@@ -13,40 +13,54 @@ jobs:
 
     steps:
       - name: Check Python
-        shell: powershell -ExecutionPolicy Bypass
+        shell: powershell
         run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
           python --version
+
           if ($LASTEXITCODE -ne 0) {
               throw "Python is not available."
           }
 
       - name: Check Git
-        shell: powershell -ExecutionPolicy Bypass
+        shell: powershell
         run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
           git --version
+
           if ($LASTEXITCODE -ne 0) {
               throw "Git is not available."
           }
 
       - name: Check Docker
-        shell: powershell -ExecutionPolicy Bypass
+        shell: powershell
         run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
           docker info
+
           if ($LASTEXITCODE -ne 0) {
               throw "Docker is not available or not running."
           }
 
       - name: Check Kubernetes
-        shell: powershell -ExecutionPolicy Bypass
+        shell: powershell
         run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
           kubectl get nodes
+
           if ($LASTEXITCODE -ne 0) {
               throw "Kubernetes is not available."
           }
 
       - name: Check Adult Income Project
-        shell: powershell -ExecutionPolicy Bypass
+        shell: powershell
         run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
           $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
 
           $Project = Get-ChildItem -Path $SearchRoot `

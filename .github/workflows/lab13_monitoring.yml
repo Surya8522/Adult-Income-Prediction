@@ -12,8 +12,10 @@ jobs:
 
     steps:
       - name: Run Adult Income MLOps monitoring trigger
-        shell: powershell -ExecutionPolicy Bypass
+        shell: powershell
         run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
           $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
 
           $Project = Get-ChildItem -Path $SearchRoot `
@@ -56,8 +58,10 @@ jobs:
           Write-Host "Adult Income monitoring completed successfully."
 
       - name: Show Adult Income monitoring report
-        shell: powershell -ExecutionPolicy Bypass
+        shell: powershell
         run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
           $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
 
           $Project = Get-ChildItem -Path $SearchRoot `
@@ -87,8 +91,10 @@ jobs:
           Get-Content -Path $Report -Encoding UTF8
 
       - name: Verify Kubernetes
-        shell: powershell -ExecutionPolicy Bypass
+        shell: powershell
         run: |
+          Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+
           Write-Host "Checking Kubernetes deployment..."
 
           kubectl get deployment adult-income-deployment
@@ -98,11 +104,13 @@ jobs:
           }
 
           kubectl get pods
+
           if ($LASTEXITCODE -ne 0) {
               throw "Kubernetes pod verification failed."
           }
 
           kubectl get services
+
           if ($LASTEXITCODE -ne 0) {
               throw "Kubernetes service verification failed."
           }
