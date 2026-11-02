@@ -1,0 +1,91 @@
+
+name: Lab 13 - Adult Income Self Hosted Runner Test
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test-runner:
+    runs-on: [self-hosted, Windows, X64]
+
+    steps:
+      - name: Check Python
+        shell: powershell
+        run: |
+          python --version
+          if ($LASTEXITCODE -ne 0) {
+              throw "Python is not available."
+          }
+
+      - name: Check Git
+        shell: powershell
+        run: |
+          git --version
+          if ($LASTEXITCODE -ne 0) {
+              throw "Git is not available."
+          }
+
+      - name: Check Docker
+        shell: powershell
+        run: |
+          docker info
+          if ($LASTEXITCODE -ne 0) {
+              throw "Docker is not available or not running."
+          }
+
+      - name: Check Kubernetes
+        shell: powershell
+        run: |
+          kubectl get nodes
+          if ($LASTEXITCODE -ne 0) {
+              throw "Kubernetes is not available."
+          }
+
+      - name: Check Adult Income Project
+        shell: powershell
+        run: |
+          # Locate Adult Income project automatically
+          $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
+
+          $Project = Get-ChildItem -Path $SearchRoot `
+              -Directory `
+              -Filter "adult-income-prediction" `
+              -Recurse `
+              -ErrorAction SilentlyContinue |
+              Select-Object -First 1
+
+          if (!$Project) {
+              throw "Adult Income project folder not found."
+          }
+
+          $ProjectRoot = $Project.FullName
+
+          Write-Host "Runner: $env:RUNNER_NAME"
+          Write-Host "Workspace: $env:GITHUB_WORKSPACE"
+          Write-Host "Project: $ProjectRoot"
+
+          # Check Python virtual environment
+          $Python = Join-Path $ProjectRoot ".venv311\Scripts\python.exe"
+
+          if (!(Test-Path $Python)) {
+              throw "Project Python environment not found."
+          }
+
+          # Check monitoring script
+          $Script = Join-Path $ProjectRoot "src\lab12_monitor_trigger.py"
+
+          if (!(Test-Path $Script)) {
+              throw "Adult Income monitoring script not found."
+          }
+
+          # Check monitoring report
+          $Report = Join-Path $ProjectRoot "outputs\monitoring\lab12_monitor_trigger_report.json"
+
+          if (!(Test-Path $Report)) {
+              throw "Adult Income monitoring report not found."
+          }
+
+          Write-Host "Adult Income project structure verified."

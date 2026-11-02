@@ -1,0 +1,116 @@
+
+name: Lab 13 - End-to-End MLOps
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "47 * * * *"
+
+jobs:
+  mlops-monitoring:
+    runs-on: [self-hosted, Windows, X64]
+
+    steps:
+      - name: Run Adult Income MLOps monitoring trigger
+        shell: powershell
+        run: |
+          # Locate the Adult Income project automatically
+          $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
+
+          $Project = Get-ChildItem -Path $SearchRoot `
+              -Directory `
+              -Filter "adult-income-prediction" `
+              -Recurse `
+              -ErrorAction SilentlyContinue |
+              Select-Object -First 1
+
+          if (!$Project) {
+              throw "Adult Income project folder not found."
+          }
+
+          $ProjectRoot = $Project.FullName
+
+          Write-Host "Project location: $ProjectRoot"
+
+          Set-Location $ProjectRoot
+
+          # Configure Python UTF-8 encoding
+          $env:PYTHONIOENCODING = "utf-8"
+          $env:PYTHONUTF8 = "1"
+          [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+          $OutputEncoding = [Console]::OutputEncoding
+
+          # Locate Python and monitoring script
+          $Python = Join-Path $ProjectRoot ".venv311\Scripts\python.exe"
+          $Script = Join-Path $ProjectRoot "src\lab12_monitor_trigger.py"
+
+          if (!(Test-Path $Python)) {
+              throw "Python virtual environment not found: $Python"
+          }
+
+          if (!(Test-Path $Script)) {
+              throw "Monitoring script not found: $Script"
+          }
+
+          # Run monitoring trigger
+          & $Python $Script
+
+          if ($LASTEXITCODE -ne 0) {
+              throw "Monitoring workflow failed."
+          }
+
+          Write-Host "Adult Income monitoring completed successfully."
+
+      - name: Show Adult Income monitoring report
+        shell: powershell
+        run: |
+          # Locate the project
+          $SearchRoot = Join-Path $env:USERPROFILE "Downloads\Btech"
+
+          $Project = Get-ChildItem -Path $SearchRoot `
+              -Directory `
+              -Filter "adult-income-prediction" `
+              -Recurse `
+              -ErrorAction SilentlyContinue |
+              Select-Object -First 1
+
+          if (!$Project) {
+              throw "Adult Income project folder not found."
+          }
+
+          $ProjectRoot = $Project.FullName
+
+          # Configure encoding
+          $env:PYTHONIOENCODING = "utf-8"
+          $env:PYTHONUTF8 = "1"
+          [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+          # Locate monitoring report
+          $Report = Join-Path $ProjectRoot "outputs\monitoring\lab12_monitor_trigger_report.json"
+
+          if (!(Test-Path $Report)) {
+              throw "Monitoring report not found: $Report"
+          }
+
+          Write-Host "Adult Income Monitoring Report:"
+          Get-Content -Path $Report -Encoding UTF8
+
+      - name: Verify Kubernetes
+        shell: powershell
+        run: |
+          Write-Host "Checking Kubernetes deployment..."
+
+          kubectl get deployment adult-income-deployment
+
+          if ($LASTEXITCODE -ne 0) {
+              throw "Adult Income Kubernetes deployment check failed."
+          }
+
+          kubectl get pods
+          kubectl get services
+
+          if ($LASTEXITCODE -ne 0) {
+              throw "Kubernetes resource verification failed."
+          }
+
+          Write-Host "Kubernetes verification completed."
