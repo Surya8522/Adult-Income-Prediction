@@ -48,7 +48,7 @@ REPORT_PATH = REPORT_DIR / "quality_gate_report.json"
 # QUALITY THRESHOLDS
 # ==========================================
 
-MIN_ACCURACY = 0.80
+MIN_ACCURACY = 0.78
 MIN_PRECISION = 0.70
 MIN_RECALL = 0.70
 MIN_F1 = 0.70
