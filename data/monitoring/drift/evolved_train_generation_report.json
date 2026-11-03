@@ -1,0 +1,16 @@
+{
+    "project": "Adult Income Prediction",
+    "dataset": "Evolved training dataset",
+    "original_training_rows": 26048,
+    "evolved_training_rows": 26048,
+    "labels_flipped": 5209,
+    "label_flip_percentage": 20,
+    "random_state": 42,
+    "features_changed": [
+        "age",
+        "hours.per.week",
+        "capital.gain",
+        "workclass"
+    ],
+    "test_data_used_for_training": false
+}

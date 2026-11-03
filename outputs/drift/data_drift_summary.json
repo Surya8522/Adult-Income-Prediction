@@ -1,0 +1,14 @@
+{
+    "project": "Adult Income Prediction",
+    "baseline_rows": 6513,
+    "evolved_rows": 6513,
+    "features_checked": 4,
+    "drifted_features": [
+        "age",
+        "hours.per.week",
+        "workclass"
+    ],
+    "drift_detected": true,
+    "threshold": 0.1,
+    "report_file": "C:\\Users\\surya\\Downloads\\Btech\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\MLOPS\\adult-income-prediction\\outputs\\drift\\data_drift_report.csv"
+}

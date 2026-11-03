@@ -1,0 +1,18 @@
+{
+    "project": "Adult Income Prediction",
+    "monitoring_type": "Automated Monitoring Trigger",
+    "timestamp": "2026-11-02T14:00:47.226033+00:00",
+    "trigger_status": "RETRAINING_REQUIRED",
+    "retraining_required": true,
+    "trigger_reasons": [
+        "Data drift detected in baseline monitoring data.",
+        "Prediction drift detected.",
+        "Concept drift or related performance degradation detected.",
+        "Model performance degradation detected."
+    ],
+    "warnings": [],
+    "v2_eligible_for_staging": true,
+    "production_model_changed": false,
+    "automatic_retraining_executed": false,
+    "automatic_production_promotion": false
+}

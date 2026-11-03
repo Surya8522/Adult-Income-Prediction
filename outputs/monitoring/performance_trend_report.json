@@ -1,0 +1,48 @@
+{
+    "project": "Adult Income Prediction",
+    "model": "Production Model Version 5",
+    "number_of_windows": 3,
+    "window_results": [
+        {
+            "window": 1,
+            "rows": 2171,
+            "metrics": {
+                "accuracy": 0.6536158452326117,
+                "precision": 0.49892008639308855,
+                "recall": 0.616,
+                "f1_score": 0.5513126491646778,
+                "roc_auc": 0.6830523105794042
+            }
+        },
+        {
+            "window": 2,
+            "rows": 2171,
+            "metrics": {
+                "accuracy": 0.6425610317825887,
+                "precision": 0.4931071049840933,
+                "recall": 0.6094364351245085,
+                "f1_score": 0.5451348182883939,
+                "roc_auc": 0.6710177007625402
+            }
+        },
+        {
+            "window": 3,
+            "rows": 2171,
+            "metrics": {
+                "accuracy": 0.672961768770152,
+                "precision": 0.5155412647374062,
+                "recall": 0.6508795669824087,
+                "f1_score": 0.5753588516746412,
+                "roc_auc": 0.7108607812157453
+            }
+        }
+    ],
+    "first_to_last_metric_changes": {
+        "accuracy": 0.019346,
+        "precision": 0.016621,
+        "recall": 0.03488,
+        "f1_score": 0.024046,
+        "roc_auc": 0.027808
+    },
+    "trend_status": "STABLE_OR_IMPROVING"
+}

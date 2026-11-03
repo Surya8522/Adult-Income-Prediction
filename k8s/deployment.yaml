@@ -1,0 +1,44 @@
+
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: adult-income-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: adult-income
+
+  template:
+    metadata:
+      labels:
+        app: adult-income
+
+    spec:
+      containers:
+        - name: adult-income-container
+          image: adult-income-api:latest
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 5000
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+
+          volumeMounts:
+            - name: adult-income-logs
+              mountPath: /app/logs
+
+      volumes:
+        - name: adult-income-logs
+          persistentVolumeClaim:
+            claimName: adult-income-logs-pvc

@@ -1,0 +1,42 @@
+{
+    "project": "Adult Income Prediction",
+    "model": "Production Model Version 5",
+    "thresholds": {
+        "accuracy": 0.7,
+        "precision": 0.5,
+        "recall": 0.7,
+        "f1_score": 0.6,
+        "roc_auc": 0.75
+    },
+    "baseline_metrics": {
+        "accuracy": 0.7901120835252572,
+        "precision": 0.5395825128003151,
+        "recall": 0.8737244897959183,
+        "f1_score": 0.667153640126613,
+        "roc_auc": 0.9036479075957987
+    },
+    "evolved_metrics": {
+        "accuracy": 0.6563795485951175,
+        "precision": 0.502498215560314,
+        "recall": 0.6252220248667851,
+        "f1_score": 0.557182429758607,
+        "roc_auc": 0.6880588138192528
+    },
+    "baseline_quality_gate": {
+        "accuracy": true,
+        "precision": true,
+        "recall": true,
+        "f1_score": true,
+        "roc_auc": true
+    },
+    "evolved_quality_gate": {
+        "accuracy": false,
+        "precision": true,
+        "recall": false,
+        "f1_score": false,
+        "roc_auc": false
+    },
+    "baseline_passed": true,
+    "evolved_passed": false,
+    "monitoring_status": "DEGRADATION_DETECTED"
+}

@@ -1,0 +1,28 @@
+{
+    "project": "Adult Income Prediction",
+    "model": "Production Model Version 5",
+    "baseline_metrics": {
+        "accuracy": 0.7901120835252572,
+        "precision": 0.5395825128003151,
+        "recall": 0.8737244897959183,
+        "f1_score": 0.667153640126613,
+        "roc_auc": 0.9036479075957987
+    },
+    "evolved_metrics": {
+        "accuracy": 0.6563795485951175,
+        "precision": 0.502498215560314,
+        "recall": 0.6252220248667851,
+        "f1_score": 0.557182429758607,
+        "roc_auc": 0.6880588138192528
+    },
+    "metric_changes": {
+        "accuracy": -0.133733,
+        "precision": -0.037084,
+        "recall": -0.248502,
+        "f1_score": -0.109971,
+        "roc_auc": -0.215589
+    },
+    "concept_drift_simulated": true,
+    "labels_flipped": 1302,
+    "labels_flip_percentage": 20
+}

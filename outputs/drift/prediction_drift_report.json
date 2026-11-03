@@ -1,0 +1,21 @@
+{
+    "project": "Adult Income Prediction",
+    "baseline_rows": 6513,
+    "evolved_rows": 6513,
+    "threshold": 0.1,
+    "prediction_drift": {
+        "ks_statistic": 0.040380776907723015,
+        "p_value": 4.873713382085784e-05,
+        "drift_detected": false
+    },
+    "probability_drift": {
+        "ks_statistic": 0.14555504375863657,
+        "p_value": 1.4642829636618253e-60,
+        "drift_detected": true
+    },
+    "baseline_positive_prediction_rate": 0.3898357131890066,
+    "evolved_positive_prediction_rate": 0.43021649009672963,
+    "baseline_mean_probability": 0.3807406664793596,
+    "evolved_mean_probability": 0.4256676078220881,
+    "overall_prediction_drift": true
+}

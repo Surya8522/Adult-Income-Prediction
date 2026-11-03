@@ -1,46 +1,43 @@
-# Virtual environment
+# Virtual environments
 .venv/
+.venv311/
 .venv313/
+venv/
+env/
 
 # Python cache
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
 
 # Jupyter
 .ipynb_checkpoints/
 
 # IDE
 .vscode/
+.idea/
 
 # Logs
 *.log
+logs/
 
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # MLflow
 mlruns/
-mlflow.db
+mlflow.db/
 
-# Pytest
+# Testing
 .pytest_cache/
+.coverage
+htmlcov/
 
-.venv/
-.venv311/
-.venv313/
+# Environment variables and secrets
+.env
+.env.*
 
-__pycache__/
-*.pyc
-
-.ipynb_checkpoints/
-.vscode/
-
-*.log
-.DS_Store
-Thumbs.db
-
-mlflow.db
-mlruns/
+# Temporary files
+*.tmp
+*.bak

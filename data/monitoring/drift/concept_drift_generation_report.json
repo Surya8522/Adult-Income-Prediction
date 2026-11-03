@@ -1,0 +1,11 @@
+{
+    "project": "Adult Income Prediction",
+    "purpose": "Simulated concept drift for Lab 12",
+    "total_rows": 6513,
+    "labels_flipped": 1302,
+    "flip_percentage": 0.2,
+    "random_state": 42,
+    "baseline_positive_labels": 1568,
+    "evolved_positive_labels": 2252,
+    "output_file": "C:\\Users\\surya\\Downloads\\Btech\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\MLOPS\\adult-income-prediction\\data\\monitoring\\drift\\evolved_labeled_data.csv"
+}

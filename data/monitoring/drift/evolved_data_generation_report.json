@@ -1,0 +1,18 @@
+{
+    "project": "Adult Income Prediction",
+    "purpose": "Simulated feature drift for Lab 12",
+    "baseline_rows": 6513,
+    "evolved_rows": 6513,
+    "changed_features": [
+        "age",
+        "hours.per.week",
+        "capital.gain",
+        "workclass"
+    ],
+    "changes": {
+        "age": "Increased by 5 years, capped at 90",
+        "hours.per.week": "Increased by 5, capped at 99",
+        "capital.gain": "Multiplied by 1.5",
+        "workclass": "Private changed to Self-emp-not-inc"
+    }
+}

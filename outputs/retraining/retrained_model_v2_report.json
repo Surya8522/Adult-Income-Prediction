@@ -1,0 +1,20 @@
+{
+    "project": "Adult Income Prediction",
+    "model": "Adult_Income_Prediction_V2",
+    "version": "V2",
+    "training_rows": 26048,
+    "testing_rows": 6513,
+    "training_data": "Evolved original training data",
+    "test_data": "Original untouched baseline test data",
+    "test_data_used_for_training": false,
+    "metrics": {
+        "accuracy": 0.8068478427759865,
+        "precision": 0.5696316262353999,
+        "recall": 0.8086734693877551,
+        "f1_score": 0.6684238270954138,
+        "roc_auc": 0.892276456841584
+    },
+    "model_file": "C:\\Users\\surya\\Downloads\\Btech\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\MLOPS\\adult-income-prediction\\models\\retrained_model_v2.pkl",
+    "preprocessor_file": "C:\\Users\\surya\\Downloads\\Btech\\\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8\\MLOPS\\adult-income-prediction\\models\\preprocessor.pkl",
+    "mlflow_run_id": "b1b5fef0b411432e82c4c81a1d02bb7a"
+}

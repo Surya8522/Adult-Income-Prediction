@@ -1,0 +1,5 @@
+feature,feature_type,drift_score,p_value,threshold,drift_detected
+age,numeric,0.13204360509749732,6.968385829889171e-50,0.1,True
+hours.per.week,numeric,0.4888684170121296,0.0,0.1,True
+capital.gain,numeric,0.022877322278519883,0.06616222644254059,0.1,False
+workclass,categorical,0.4061345204410005,,0.1,True

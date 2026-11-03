@@ -1,0 +1,22 @@
+{
+    "model": "production_model.pkl",
+    "metrics": {
+        "accuracy": 0.7901120835252572,
+        "precision": 0.8513260274542755,
+        "recall": 0.7901120835252572,
+        "f1_score": 0.8034984103040533
+    },
+    "thresholds": {
+        "accuracy": 0.78,
+        "precision": 0.7,
+        "recall": 0.7,
+        "f1_score": 0.7
+    },
+    "checks": {
+        "accuracy": true,
+        "precision": true,
+        "recall": true,
+        "f1_score": true
+    },
+    "quality_gate": "PASSED"
+}

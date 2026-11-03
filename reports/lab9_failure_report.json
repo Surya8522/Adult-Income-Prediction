@@ -1,0 +1,35 @@
+{
+    "project": "Adult Income Prediction",
+    "lab": "Lab 9 - Failure Testing",
+    "total_tests": 5,
+    "passed": 5,
+    "failed": 0,
+    "overall_status": "PASSED",
+    "test_results": [
+        {
+            "test": "Missing dataset",
+            "status": "PASS",
+            "details": "Dataset not found: data/raw/adult.csv"
+        },
+        {
+            "test": "Missing required dataset columns",
+            "status": "PASS",
+            "details": "Missing columns: ['workclass', 'fnlwgt', 'education', 'education.num', 'marital.status', 'occupation', 'relationship', 'race', 'sex', 'capital.gain', 'capital.loss', 'hours.per.week', 'native.country']"
+        },
+        {
+            "test": "Empty dataset",
+            "status": "PASS",
+            "details": "Dataset is empty."
+        },
+        {
+            "test": "Missing preprocessing outputs",
+            "status": "PASS",
+            "details": "One or more required outputs are missing."
+        },
+        {
+            "test": "Training X/y size mismatch",
+            "status": "PASS",
+            "details": "Training X/y size mismatch."
+        }
+    ]
+}
