@@ -1807,3 +1807,9 @@ The Kubernetes deployment was tested, and the application pod reached the `Runni
 | Kubernetes Deployment | Completed |
 | Kubernetes Service | Configured |
 | Kubernetes Pod | Running |
+
+# 👨‍💻 Author
+
+**SuryaPrakash Balusu**
+
+Computer Science & Engineering – Artificial Intelligence & Machine Learning

@@ -20,11 +20,11 @@ spec:
     spec:
       containers:
         - name: adult-income-container
-          image: adult-income-api:latest
+          image: adult-income-api:2.0
           imagePullPolicy: IfNotPresent
 
           ports:
-            - containerPort: 5000
+            - containerPort: 8000
 
           resources:
             requests:
